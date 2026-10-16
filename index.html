@@ -506,6 +506,35 @@ footer .credit{display:block}
 @media (max-width:720px){ .ov{width:210px;max-height:calc(100% - 170px)} .mats-ov{width:220px} }
 
 @media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+
+/* Señalización de seguridad (NTP 399.010-1 / ISO 7010) */
+:root{--sg-red:#c1121f;--sg-yel:#f5b800;--sg-blu:#0b5ea8;--sg-grn:#1e7d46;--sg-red-t:#a30f1a;--sg-yel-t:#7a5900;--sg-blu-t:#0b5ea8;--sg-grn-t:#1a6b3c}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--sg-red-t:#ff6b72;--sg-yel-t:#f5c533;--sg-blu-t:#6fb2f2;--sg-grn-t:#5cc489}}
+:root[data-theme="dark"]{--sg-red-t:#ff6b72;--sg-yel-t:#f5c533;--sg-blu-t:#6fb2f2;--sg-grn-t:#5cc489}
+.sg-p,.sg-f{--c:var(--sg-red);--ct:var(--sg-red-t)} .sg-w{--c:var(--sg-yel);--ct:var(--sg-yel-t)} .sg-m{--c:var(--sg-blu);--ct:var(--sg-blu-t)} .sg-e{--c:var(--sg-grn);--ct:var(--sg-grn-t)}
+.sgi{width:24px;height:24px;flex:0 0 24px}
+.sg-list{list-style:none;margin:0;padding:0;display:grid;gap:5px}
+.sg-item{display:flex;gap:8px;align-items:flex-start;padding:6px 8px;border-left:4px solid var(--c);background:color-mix(in srgb,var(--c) 13%,var(--surface));border-radius:2px;font-size:13px;line-height:1.4;color:var(--ink)}
+.sg-item em{display:block;font:600 10.5px/1.25 var(--f-display);letter-spacing:.1em;text-transform:uppercase;font-style:normal;color:var(--ct);margin-bottom:1px}
+.sg-item input{margin-top:5px;flex:0 0 auto}
+.instr-saf{border-left-color:var(--sg-yel);background:color-mix(in srgb,var(--sg-yel) 7%,var(--surface))}
+.instr-saf > b{color:var(--ink)} .instr-saf > b small{font:500 11px var(--f-mono);letter-spacing:0;text-transform:none;color:var(--muted)}
+.instr-saf .sg-list{margin-top:4px}
+.sg-strip{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 8px}
+.sg-chip{display:inline-flex;align-items:center;gap:5px;font:600 11px/1 var(--f-display);letter-spacing:.06em;text-transform:uppercase;padding:3px 7px 3px 3px;border:1px solid var(--c);border-radius:2px;color:var(--ct)}
+.sg-chip .sgi{width:18px;height:18px;flex-basis:18px}
+#modalList.checks{display:grid;gap:5px}
+.safety-banner.sg-p,.safety-banner.sg-w,.safety-banner.sg-m,.safety-banner.sg-e,.safety-banner.sg-f{display:flex;gap:8px;align-items:flex-start;border-color:var(--c);border-left:6px solid var(--c);background:color-mix(in srgb,var(--c) 16%,var(--surface));color:var(--ink)}
+.safety-banner[hidden]{display:none!important}
+.safety-banner b{display:block;color:var(--ct)}
+section.ref.sg-sec{grid-template-columns:minmax(0,1fr)}
+.sg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:12px;align-items:start}
+.sg-card{border:1px solid var(--line);border-top:6px solid var(--c);background:var(--surface);border-radius:3px;padding:12px;min-width:0}
+.sg-card header{display:flex;gap:12px;align-items:flex-start;margin-bottom:10px}
+.sg-card header .sgi{width:48px;height:48px;flex-basis:48px}
+.sg-card header b{display:block;font:700 19px/1.1 var(--f-display);text-transform:uppercase;color:var(--ct)}
+.sg-card header span{display:block;font:500 12px/1.3 var(--f-mono);color:var(--muted);margin-top:2px}
+.sg-card header small{display:block;font-size:13px;color:var(--ink);margin-top:3px}
 </style>
 
 <div class="wrap">
@@ -585,6 +614,7 @@ footer .credit{display:block}
             <legend>Seguridad inicial <span class="chip warn" id="safChip">sin confirmar</span></legend>
             <p class="hint" style="margin:0">Condiciones del puesto de trabajo que deben verificarse antes de encender la prensa.</p>
             <button class="btn s" id="safBtn" type="button">Revisar y confirmar seguridad</button>
+            <button class="btn s" id="sgGo" type="button">Ver código de colores de seguridad</button>
           </fieldset>
 
           <fieldset>
@@ -839,6 +869,11 @@ footer .credit{display:block}
       </div>
     </div>
   </div>
+
+  <section class="ref sg-sec" id="sgSection">
+    <div><h2>Seguridad industrial</h2><p class="sub">Código de colores y formas de las señales de seguridad aplicado a las normas que el estudiante sigue al manipular la prensa.</p></div>
+    <div class="ref-body" id="sgBody"></div>
+  </section>
 
   <section class="ref">
     <div><h2>Tiempos y temperaturas</h2><p class="sub">Máquina 8 en 1 multifuncional 38 × 38 cm (Freesub Perú, P8038‑RV8). Pulse una fila para cargarla en el simulador.</p></div>
@@ -1860,7 +1895,7 @@ function paintInstr(){
   const s = STEPS[n], saf = s.saf();
   $('inN').textContent = String(n+1).padStart(2,'0'); $('inT').textContent = s.label();
   $('inList').innerHTML = s.det().map(d=>`<li>${d}</li>`).join('');
-  $('inSaf').hidden = !saf.length; $('inSaf').innerHTML = saf.length ? `<b>Seguridad</b><ul>${saf.map(x=>`<li>${x}</li>`).join('')}</ul>` : '';
+  $('inSaf').hidden = !saf.length; $('inSaf').innerHTML = saf.length ? sgBox(saf) : '';
   let x = '';
   if (s.k==='art' && !A.loaded) x += `<button type="button" class="btn s insert" id="inInsert">Insertar arte final (PDF, PNG o JPG)</button><button type="button" class="btn s" id="inSample">Usar arte de muestra</button>`;
   if (s.k==='check') x += `<button type="button" class="btn s" id="inGoPrep">Abrir la lista de materiales</button>`;
@@ -1874,7 +1909,7 @@ function paintInstr(){
     $('inSafety')?.addEventListener('click',()=> act('safety','user'));
     $('inOff')?.addEventListener('click',()=> act('off','user')); }
   const sb = $('safetyBanner');
-  if (saf.length && mode==='proc' && R.started){ sb.hidden = false; sb.innerHTML = `<b>Seguridad</b>${saf[0]}`; } else sb.hidden = true;
+  if (saf.length && mode==='proc' && R.started){ sb.hidden = false; const sm = sgMeta(saf[0]); sb.className = `safety-banner ${sgCls(sm.cat)}`; sb.innerHTML = `${sgSign(sm.cat,sm.g)}<span><b>${sgCats()[sm.cat].name}${sm.code?' · '+sm.code:''}</b>${saf[0]}</span>`; } else sb.hidden = true;
 }
 
 /* --- Registro --- */
@@ -1979,7 +2014,7 @@ let modalCb = null, modalReturn = null;
 function openModal(title, desc, items, okText, cb, band='SEGURIDAD'){
   modalReturn = document.activeElement; modalCb = cb;
   $('modalBand').textContent = band; $('modalTitle').textContent = title; $('modalDesc').textContent = desc; $('modalOk').textContent = okText;
-  $('modalList').innerHTML = items.map((t,i)=>`<label class="chk"><input type="checkbox" id="mi${i}"> ${t}</label>`).join('');
+  $('modalList').innerHTML = sgLegendStrip() + items.map((t,i)=>{ const m = sgMeta(t), c = sgCats()[m.cat]; return `<label class="chk sg-item ${sgCls(m.cat)}"><input type="checkbox" id="mi${i}">${sgSign(m.cat,m.g)}<span><em>${c.name}${m.code?` · ${m.code}`:''} · ${m.sign}</em>${t}</span></label>`; }).join('');
   const upd = ()=>{ const cs = [...$('modalList').querySelectorAll('input')], n = cs.filter(c=>c.checked).length; $('modalOk').disabled = n<cs.length; $('modalCount').textContent = n<cs.length ? `${n} de ${cs.length} confirmados · marque todos para habilitar «${okText}»` : `${n} de ${cs.length} confirmados`; };
   $('modalList').querySelectorAll('input').forEach(c=> c.addEventListener('change',upd)); upd();
   $('modal').hidden = false; $('mi0')?.focus();
@@ -2893,7 +2928,7 @@ function tbPaint(force){
   if (force || key!==tbCache){ tbCache = key;
     $('tbN').textContent = String(n+1).padStart(2,'0'); $('tbT').textContent = s.label;
     $('tbList').innerHTML = s.det().map(d=>`<li>${d}</li>`).join('');
-    const saf = s.saf(); $('tbSaf').hidden = !saf.length; $('tbSaf').innerHTML = saf.length ? `<b>Seguridad</b><ul>${saf.map(x=>`<li>${x}</li>`).join('')}</ul>` : '';
+    const saf = s.saf(); $('tbSaf').hidden = !saf.length; $('tbSaf').innerHTML = saf.length ? sgBox(saf) : '';
     $('tbX').innerHTML = s.k==='mat' ? `<div class="checks">${tbMaterials(S.prod).map((t,i)=>`<label class="chk"><input type="checkbox" data-i="${i}"${TB.inline[i]?' checked':''}> ${t}</label>`).join('')}</div>` : '';
     $('tbX').querySelectorAll('input').forEach(c=> c.addEventListener('change',()=>{ TB.inline[+c.dataset.i] = c.checked; tbPaint(); }));
   }
@@ -3245,6 +3280,120 @@ loadProduct(); refreshButtons(); procReset();
 setStatus('Práctica guiada','Elija el material, complete la lista de materiales y confirme la seguridad inicial.');
 flyTo(GENERAL.cam,GENERAL.tgt);
 if (reduce) controls.enableDamping = false;
+/* --- Señalización de seguridad: colores y formas (NTP 399.010-1 / ISO 7010) --- */
+function sgGlyph(g, fill){
+  const s = `fill="none" stroke="${fill}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"`;
+  switch (g){
+    case 'heat': return `<g ${s}><path d="M8 15c-1.4-1.6 1.4-3 0-4.6S9.4 7.4 8 5.8"/><path d="M12 15c-1.4-1.6 1.4-3 0-4.6s1.4-3 0-4.6"/><path d="M16 15c-1.4-1.6 1.4-3 0-4.6s1.4-3 0-4.6"/><path d="M6 18h12"/></g>`;
+    case 'hand': return `<g ${s}><path d="M9 17.5v-6M9 11.5V7.2a1 1 0 0 1 2 0V11M11 11V6a1 1 0 0 1 2 0v5M13 11V6.6a1 1 0 0 1 2 0V11.5M15 11.5V9a1 1 0 0 1 2 0v4.2c0 2.9-2 4.8-4.6 4.8h-.8c-1.6 0-2.6-.7-3.4-1.9L6.4 13.6a1 1 0 0 1 1.7-1.1L9 14"/></g>`;
+    case 'crush': return `<g ${s}><path d="M5 5.5h14M12 5.5v4M10 8l2 2 2-2"/><path d="M9.5 19v-4.6M9.5 14.4v-1.8a.9.9 0 0 1 1.8 0v1.6M11.3 14.2v-2.3a.9.9 0 0 1 1.8 0v2.3M13.1 14.2v-1.6a.9.9 0 0 1 1.8 0v3c0 2-1.4 3.4-3.2 3.4H11c-1 0-1.8-.5-2.3-1.3l-1.4-2.2a.8.8 0 0 1 1.3-.9l.9.9"/></g>`;
+    case 'bolt': return `<path d="M13.2 3 7 13h4.3l-1 8L17 10.6h-4.4L13.2 3z" fill="${fill}"/>`;
+    case 'flame': return `<path d="M12 3c.6 3.2 4.8 5.2 4.8 9.6A4.8 4.8 0 0 1 12 17.4a4.8 4.8 0 0 1-4.8-4.8c0-2.2 1.2-3.6 2.2-4.6.2 1.6.8 2.6 1.8 3.2C11 8.8 11.2 5.6 12 3z" fill="${fill}"/><path d="M6 20h12" ${s}/>`;
+    case 'plug': return `<g ${s}><path d="M9 3.5v4M15 3.5v4M7 7.5h10v3.2a5 5 0 0 1-10 0z"/><path d="M12 15.7V20.5"/></g>`;
+    case 'glove': return `<g ${s}><path d="M8.5 20.5v-3.2l-2.3-3.4a1 1 0 0 1 1.6-1.2l1.2 1.4V6.8a1 1 0 0 1 2 0V11V5.6a1 1 0 0 1 2 0V11V6.2a1 1 0 0 1 2 0V11V8a1 1 0 0 1 2 0v6.6c0 1.6-.8 2.4-1.6 2.8v3.1"/><path d="M8.5 18.4h7.8"/></g>`;
+    case 'ext': return `<g ${s}><rect x="9" y="8" width="6" height="12" rx="2"/><path d="M11 8V5.5h2V8M13 5.5h3.5l1.5 3M10 5.5c-1.5 0-2.5.8-3 2"/></g>`;
+    case 'check': return `<path d="M6.5 12.5 10.5 16.5 17.5 8" ${s} stroke-width="2.4"/>`;
+    case 'off': return `<g ${s}><rect x="8" y="4.5" width="8" height="15" rx="1.5"/><circle cx="12" cy="14.5" r="2.2"/><path d="M12 7.5v2"/></g>`;
+    default: return `<path d="M12 6.5v7" stroke="${fill}" stroke-width="2.4" stroke-linecap="round"/><circle cx="12" cy="17.3" r="1.4" fill="${fill}"/>`;
+  }
+}
+// Forma y color por categoría
+function sgSign(cat, g){
+  const body = {
+    P: `<circle cx="12" cy="12" r="10.2" fill="#fff" stroke="#c1121f" stroke-width="2.6"/>${g ? `<g transform="translate(3.6 3.6) scale(.7)">${sgGlyph(g,'#111')}</g>` : ''}<path d="M5 5l14 14" stroke="#c1121f" stroke-width="2.6"/>`,
+    W: `<path d="M12 2.4 22.6 20.6a.8.8 0 0 1-.7 1.2H2.1a.8.8 0 0 1-.7-1.2L12 2.4z" fill="#f5b800" stroke="#111" stroke-width="1.4" stroke-linejoin="round"/><g transform="translate(6 8.4) scale(.5)">${sgGlyph(g,'#111')}</g>`,
+    M: `<circle cx="12" cy="12" r="11" fill="#0b5ea8"/><g transform="translate(2.4 2.4) scale(.8)">${sgGlyph(g,'#fff')}</g>`,
+    E: `<rect x="1" y="1" width="22" height="22" rx="1.5" fill="#1e7d46"/><g transform="translate(2.4 2.4) scale(.8)">${sgGlyph(g,'#fff')}</g>`,
+    F: `<rect x="1" y="1" width="22" height="22" rx="1.5" fill="#c1121f"/><g transform="translate(2.4 2.4) scale(.8)">${sgGlyph(g,'#fff')}</g>`,
+  }[cat];
+  return `<svg class="sgi" viewBox="0 0 24 24" aria-hidden="true">${body}</svg>`;
+}
+// Categorías del código de colores
+function sgCats(){ return {
+  P: { name:'Prohibición', color:'Rojo', shape:'Círculo con banda diagonal', mean:'Acción que no se debe realizar.' },
+  W: { name:'Advertencia', color:'Amarillo', shape:'Triángulo', mean:'Peligro presente en el equipo o en el puesto.' },
+  M: { name:'Obligación', color:'Azul', shape:'Círculo', mean:'Acción o equipo de protección obligatorio.' },
+  E: { name:'Condición segura', color:'Verde', shape:'Cuadrado', mean:'Estado seguro del equipo o del puesto.' },
+  F: { name:'Equipo contra incendios', color:'Rojo', shape:'Cuadrado', mean:'Ubicación del equipo contra incendios.' },
+}; }
+// Clasificación de cada norma de la práctica (orden de las reglas = prioridad)
+function sgRules(){ return [
+  [/extintor/i,                              'F','F001','ext',  'Extintor'],
+  [/^no (tocar|apoy)/i,                      'P','P010','hand', 'Prohibido tocar'],
+  [/^no |no se cubre/i,                      'P','P001','',     'Prohibición general'],
+  [/guantes/i,                               'M','M009','glove','Uso obligatorio de guantes'],
+  [/desconect/i,                             'M','M006','plug', 'Desconectar el enchufe'],
+  [/manos fuera|meter las manos|zona de cierre/i, 'W','W024','crush','Riesgo de atrapamiento de manos'],
+  [/vapor/i,                                 'W','W001','',     'Vapor caliente'],
+  [/cable|enchufe|tomacorriente|tierra/i,    'W','W012','bolt', 'Riesgo eléctrico'],
+  [/inflamable|solvente|papeles y telas/i,   'W','W021','flame','Material inflamable'],
+  [/caliente|calor|°|antebrazo|llegará|alcanzará|\bSV\b/i, 'W','W017','heat', 'Superficie caliente'],
+  [/interruptor de la prensa en o/i,         'E','',    'off',  'Equipo apagado'],
+  [/retirados|ordenad/i,                     'E','',    'check','Puesto ordenado'],
+  [/cabello|ventilad|cinta térmica|forzar/i, 'M','M001','',     'Obligación general'],
+]; }
+function sgMeta(text){
+  const r = sgRules().find(([re])=> re.test(text)) || [null,'W','W001','','Advertencia general'];
+  return { cat:r[1], code:r[2], g:r[3], sign:r[4] };
+}
+function sgCls(k){ return { P:'sg-p', W:'sg-w', M:'sg-m', E:'sg-e', F:'sg-f' }[k]; }
+function sgItem(text, short=false){
+  const m = sgMeta(text), c = sgCats()[m.cat];
+  return `<li class="sg-item ${sgCls(m.cat)}">${sgSign(m.cat,m.g)}<span><em>${short?'':c.name+' · '}${m.code?`${m.code} · `:''}${m.sign}</em>${text}</span></li>`;
+}
+function sgBox(list){ return `<b>Seguridad industrial <small>· código de colores NTP 399.010-1</small></b><ul class="sg-list">${list.map(t=>sgItem(t)).join('')}</ul>`; }
+function sgLegendStrip(){
+  const C = sgCats();
+  return `<div class="sg-strip">${['P','W','M','E','F'].map(k=>`<span class="sg-chip ${sgCls(k)}">${sgSign(k, {P:'',W:'',M:'',E:'check',F:'ext'}[k])}${C[k].color} · ${C[k].name}</span>`).join('')}</div>`;
+}
+
+/* Sección de referencia: código de colores y normas de la práctica */
+function sgAllNorms(){
+  const set = new Set([...SAFETY_START, ...SAFETY_END]);
+  STEPS_ALL.forEach(s=>{ try{ s.saf().forEach(t=> set.add(t)); }catch(_){} });
+  return [...set];
+}
+function paintSgSection(){
+  const el = $('sgBody'); if (!el) return;
+  const C = sgCats(), norms = sgAllNorms(), by = { P:[], W:[], M:[], E:[], F:[] };
+  norms.forEach(t=> by[sgMeta(t).cat].push(t));
+  el.innerHTML = `<div class="sg-grid">${['P','W','M','E','F'].map(k=>`<article class="sg-card ${sgCls(k)}"><header>${sgSign(k,{P:'hand',W:'heat',M:'glove',E:'check',F:'ext'}[k])}<div><b>${C[k].name}</b><span>${C[k].color} · ${C[k].shape}</span><small>${C[k].mean}</small></div></header><ul class="sg-list">${by[k].map(t=>sgItem(t,true)).join('')}</ul></article>`).join('')}</div><p class="note">Colores de seguridad y formas geométricas según la NTP 399.010-1 (INACAL); códigos de pictograma según ISO 7010. Cada norma proviene de los pasos de la práctica guiada y de las listas de seguridad inicial y de cierre.</p>`;
+}
+paintSgSection();
+$('sgGo')?.addEventListener('click',()=> $('sgSection').scrollIntoView({ behavior:'smooth', block:'start' }));
+
+/* Señales en la escena 3D: adhesivo de superficie caliente en la plancha y tablero del puesto */
+function sgTexture(cats, w, h, draw){
+  const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+  const tex = new THREE.CanvasTexture(cv); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 4;
+  const ctx = cv.getContext('2d'); let pending = cats.length;
+  const imgs = cats.map(([cat,g])=>{ const im = new Image(); im.onload = ()=>{ if (--pending===0){ draw(ctx, imgs); tex.needsUpdate = true; } };
+    im.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(sgSign(cat,g).replace('<svg ','<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" ')); return im; });
+  return tex;
+}
+{
+  // Adhesivo W017 en el borde frontal de la cubierta de la plancha
+  const tex = sgTexture([['W','heat']], 256, 256, (c,[im])=>{ c.drawImage(im,0,0,256,256); });
+  const st = new THREE.Mesh(new THREE.PlaneGeometry(0.62,0.62), new THREE.MeshStandardMaterial({ map:tex, transparent:true, roughness:.6 }));
+  st.rotation.x = -Math.PI/2; st.position.set(1.35,0.102,1.45); st.userData.part = 'plancha'; partMeshes.plancha.push(st); platenGroup.add(st);
+}
+{
+  // Tablero de señalización del puesto de trabajo
+  const signs = [['W','heat','SUPERFICIE CALIENTE'],['W','crush','ATRAPAMIENTO DE MANOS'],['W','bolt','RIESGO ELÉCTRICO'],['M','glove','USE GUANTES TÉRMICOS'],['P','hand','NO TOCAR LA PLANCHA'],['F','ext','EXTINTOR']];
+  const tex = sgTexture(signs.map(s=>[s[0],s[1]]), 1536, 1024, (c, imgs)=>{
+    c.fillStyle = '#f4f4f2'; c.fillRect(0,0,1536,1024); c.fillStyle = '#1b1e22'; c.fillRect(0,0,1536,110);
+    c.fillStyle = '#fff'; c.font = '700 64px "Barlow Condensed", Arial Narrow, sans-serif'; c.textAlign = 'center'; c.fillText('SEGURIDAD EN EL PUESTO DE PRENSADO', 768, 78);
+    imgs.forEach((im,i)=>{ const x = (i%3)*512, y = 130 + Math.floor(i/3)*447;
+      c.drawImage(im, x+136, y+10, 240, 240);
+      c.fillStyle = '#1b1e22'; c.font = '700 46px "Barlow Condensed", Arial Narrow, sans-serif'; c.fillText(signs[i][2], x+256, y+310);
+      c.fillStyle = '#5b636c'; c.font = '500 34px "IBM Plex Mono", monospace'; c.fillText({W:'Advertencia',M:'Obligación',P:'Prohibición',F:'Contra incendios'}[signs[i][0]], x+256, y+360); });
+  });
+  const board = new THREE.Group(); board.position.set(3.9,0,-3.1); board.rotation.y = -0.55; scene.add(board);
+  const panel = new THREE.Mesh(new THREE.PlaneGeometry(2.4,1.6), new THREE.MeshStandardMaterial({ map:tex, roughness:.8 })); panel.position.y = 2.0; board.add(panel);
+  const back = new THREE.Mesh(new THREE.BoxGeometry(2.5,1.7,0.04), new THREE.MeshStandardMaterial({ color:0x3a4048, roughness:.7 })); back.position.set(0,2.0,-0.03); board.add(back);
+  [-1.0,1.0].forEach(x=>{ const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.03,0.03,1.2,10), new THREE.MeshStandardMaterial({ color:0x3a4048, metalness:.6, roughness:.4 })); leg.position.set(x,0.6,-0.03); board.add(leg); });
+}
+
 </script>
 
 </body></html>
