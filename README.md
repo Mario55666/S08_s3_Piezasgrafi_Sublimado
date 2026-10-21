@@ -141,6 +141,36 @@ El botón «Informe de la práctica» genera un informe con logo, docente, nombr
 | Recorrido guiado | Catorce puntos de la interfaz. Esc o «Salir» lo cierran. |
 | «¿Cómo se usa?» | Recorrido por los controles de la caja de control; también aparecen al pasar el cursor. |
 
+## Señalización de seguridad
+
+Cada norma de seguridad de la práctica lleva el color, la forma y el pictograma de su categoría. Colores y formas según la NTP 399.010-1 (INACAL); códigos según ISO 7010.
+
+| Categoría | Color · forma | Códigos usados |
+| --- | --- | --- |
+| Prohibición | Rojo · círculo con banda diagonal | P001, P010 |
+| Advertencia | Amarillo · triángulo | W001, W012, W017, W021, W024 |
+| Obligación | Azul · círculo | M001, M006, M009 |
+| Condición segura | Verde · cuadrado | — |
+| Equipo contra incendios | Rojo · cuadrado | F001 |
+
+La codificación aparece en las listas de seguridad inicial y de cierre, en el recuadro de seguridad de cada paso, en el aviso sobre la vista 3D y en la sección «Seguridad industrial». La escena 3D incluye un tablero de señales del puesto y un adhesivo W017 en la plancha.
+
+## Registro del estudiante, repaso y acta de compromiso (PDF)
+
+Sección al final de la página. Accesos: botón «Registro del estudiante y acta» en la cabecera, «Registro y acta» en la barra de la vista 3D, «Registrar mis datos y firmar el acta» en «Preparación» y botón en la tarjeta final del procedimiento.
+
+El estudiante completa sus datos, su equipo de trabajo y el tipo de cada material (común, individual o del instituto) con su responsable, firma en el recuadro de firma (mouse, dedo o lápiz), marca la declaración y pulsa «Generar PDF: repaso del ejercicio y acta de compromiso». El PDF (A4, jsPDF 2.5.1 y jspdf‑autotable 3.8.2, cargados al pulsar el botón) contiene:
+
+1. Datos del estudiante, material, talla y parámetros de la prensa.
+2. Parte I · Repaso del ejercicio virtual: estado (completo o incompleto), tiempo, pasos realizados, intentos rechazados, fases en rango, PV durante el sublimado, intensidad estimada, configuración, arte final, tabla de fases, mediciones del estudiante frente al simulador y observaciones.
+3. Parte II · Acta de compromiso: seis cláusulas (objeto, conocimiento del procedimiento, seguridad industrial, materiales, uso del equipo del instituto y presentación), cuadro de materiales con responsable, costo referencial y casilla «Listo», y firmas (la del estudiante, tomada del recuadro de firma).
+4. Anexo 1: lista de verificación de los pasos del material elegido, con medición a anotar, hora registrada en el simulador, espacio para la anotación y casilla.
+5. Anexos 2 y 3: seguridad inicial y de cierre con el código de colores.
+
+En la pantalla ampliada, el panel «Práctica guiada / Tabla del fabricante» se superpone a la vista 3D con fondo al 15 % de opacidad y desenfoque; la cámara desplaza el centro de la escena hacia el área libre.
+
+En claude.ai el archivo se entrega mediante la capacidad `downloads` (el visor pide confirmación); fuera del visor se descarga directamente.
+
 ## Alarmas
 
 | Tipo | Uso | Sonido |
