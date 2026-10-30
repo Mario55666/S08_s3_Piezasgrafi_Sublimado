@@ -569,6 +569,26 @@ section.ref.sg-sec{grid-template-columns:minmax(0,1fr)}
 .sig-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .ct-progress{margin:0;font:500 13px/1.45 var(--f-mono);padding:8px 10px;border-left:3px solid var(--steel);background:color-mix(in srgb,var(--steel) 8%,var(--surface))}
 .ct-progress.ok{border-left-color:var(--ok)}
+
+/* Transferencia DTF */
+.dtf-body{display:grid;gap:10px}
+.dtf-h{font:600 13px/1.2 var(--f-display);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:8px 0 0}
+.dtf-table td,.dtf-table th{white-space:normal;vertical-align:top}
+.dtf-table td:first-child{font-weight:600;min-width:140px}
+.dtf-table td.num{white-space:nowrap;text-align:left}
+
+/* Glosario */
+.gl-sec .gl-search{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--muted);margin-top:14px}
+.gl-sec .gl-search input{font:14px var(--f-body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:7px 8px;width:100%}
+.gl-group{margin-bottom:18px}
+.gl-group h3{font:600 13px/1.2 var(--f-display);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.gl-list{margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:8px}
+.gl-item{border:1px solid var(--line);border-left:3px solid var(--heat);background:var(--surface);border-radius:2px;padding:8px 10px}
+.gl-item dt b{font:700 15px/1.2 var(--f-body);color:var(--ink);margin-right:8px}
+.gl-item dt span{font-size:12.5px;color:var(--muted)}
+.gl-item dd{margin:4px 0 0;font-size:13.5px;line-height:1.45}
+.gl-item[hidden],.gl-group[hidden]{display:none}
+.gl-link{color:var(--steel);font-weight:600}
 </style>
 
 <div class="wrap">
@@ -715,7 +735,7 @@ section.ref.sg-sec{grid-template-columns:minmax(0,1fr)}
               <button type="button" id="cUnitBtn">°C/°F</button>
             </div>
             <div class="ctl-check" id="ctlCheck" aria-live="polite"></div>
-            <p class="ctl-help">SET recorre SV → P‑1 → P‑2; ▲ ▼ ajustan (mantener pulsado acelera); SET en P‑2 guarda y vuelve a PV. Pase el cursor sobre cada control para ver su función.</p>
+            <p class="ctl-help">SET recorre SV → P‑1 → P‑2; ▲ ▼ ajustan (mantener pulsado acelera); SET en P‑2 guarda y vuelve a PV. Pase el cursor sobre cada control para ver su función. <a href="#glSection" class="gl-link">Glosario: SV, PV, P‑1, P‑2</a></p>
           </div>
 
           <dl class="meta">
@@ -938,11 +958,57 @@ section.ref.sg-sec{grid-template-columns:minmax(0,1fr)}
     </div>
   </section>
 
+  <section class="ref dtf-sec" id="dtfSection" aria-labelledby="dtfTitle">
+    <div><h2 id="dtfTitle">Transferencia DTF</h2><p class="sub">Parámetros de la termofijadora y características del polo para fijar película DTF (<i>direct to film</i>) sobre textil. Valores de la guía del curso.</p></div>
+    <div class="ref-body dtf-body">
+      <h3 class="dtf-h">Parámetros de la termofijadora</h3>
+      <div class="tbl-wrap"><table class="dtf-table">
+        <thead><tr><th>Parámetro</th><th>Valor</th><th>Indicación</th></tr></thead>
+        <tbody>
+          <tr><td>Algodón y fibras naturales</td><td class="num">150–170 °C · 15–30 s</td><td>Valor de uso frecuente: 160 °C durante 15 s.</td></tr>
+          <tr><td>Poliéster o mezcla con más de 50 % de fibra sintética</td><td class="num">140 °C · 45 s</td><td>Temperatura menor para evitar daño térmico de la fibra y migración de los colorantes sintéticos.</td></tr>
+          <tr><td>Presión</td><td>Media a alta, uniforme</td><td>Presión mecánica o neumática. El adhesivo de poliuretano termoplástico (TPU) fundido penetra en las fibras superficiales.</td></tr>
+          <tr><td>Preplanchado</td><td class="num">3–5 s</td><td>Polo solo, antes de colocar el transfer. Retira la humedad y alisa la superficie.</td></tr>
+          <tr><td>Despegue del film PET</td><td>En caliente o en frío</td><td>Según el tipo de película: en caliente (<i>hot peel</i>) al levantar la prensa; en frío (<i>cold peel</i>) con la lámina completamente fría.</td></tr>
+          <tr><td>Planchado de sellado (opcional)</td><td class="num">3–5 s</td><td>Tras retirar el film, con el diseño cubierto por papel manteca (acabado mate) u hoja de teflón (acabado brillante).</td></tr>
+        </tbody>
+      </table></div>
+      <h3 class="dtf-h">Características del polo (sustrato textil)</h3>
+      <div class="tbl-wrap"><table class="dtf-table">
+        <thead><tr><th>Característica</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td>Composición de la tela</td><td>100 % algodón y fibras naturales (algodón, lino, cáñamo); 100 % poliéster y sintéticos (tela deportiva, nylon, spandex); mezclas de poliéster y algodón (50/50, 60/40). La tinta no se absorbe en la fibra: queda sobre ella con el adhesivo.</td></tr>
+          <tr><td>Color de la prenda</td><td>Cualquier color, incluidos el blanco y el negro. Bajo el diseño CMYK se imprime una capa de tinta blanca opaca (<i>white underbase</i>) que impide que el color del polo altere el del diseño.</td></tr>
+          <tr><td>Pretratamiento</td><td>No requiere líquido de pretratamiento, a diferencia de la impresión directa sobre prenda (DTG).</td></tr>
+          <tr><td>Estampado resultante</td><td>Capa delgada, elástica y flexible adherida con polvo TPU sobre la superficie del hilo; no tiñe la fibra. La guía indica más de 50 ciclos de lavado con los parámetros de la tabla.</td></tr>
+        </tbody>
+      </table></div>
+      <h3 class="dtf-h">Comparación con la sublimación de este simulador</h3>
+      <div class="tbl-wrap"><table class="dtf-table">
+        <thead><tr><th>Aspecto</th><th>Sublimación</th><th>DTF</th></tr></thead>
+        <tbody>
+          <tr><td>Fibra</td><td>Poliéster o superficie con recubrimiento de poliéster</td><td>Algodón, poliéster, mezclas, nylon, spandex</td></tr>
+          <tr><td>Color del polo</td><td>Blanco o claro</td><td>Cualquier color</td></tr>
+          <tr><td>Temperatura y tiempo (polo)</td><td class="num">185–205 °C · 40–60 s</td><td class="num">140–170 °C · 15–45 s</td></tr>
+          <tr><td>Fijación</td><td>La tinta pasa a gas y tiñe la fibra</td><td>Capa de tinta y adhesivo TPU sobre la fibra</td></tr>
+          <tr><td>Retiro del soporte</td><td>Papel en un solo tirón, en caliente</td><td>Film PET en caliente o en frío, según la película</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">Referencias de proveedores para contrastar: DTF Transfers Now indica 149–160 °C (300–320 °F) durante 10–15 s para algodón y 138–146 °C (280–295 °F) durante 8–10 s para poliéster, con despegue en frío en poliéster y preplanchado de unos 5 s. Ninja Transfers indica 155 °C (310 °F) durante 10–13 s, presión media a alta y un segundo planchado de 10 s. Los 45 s para poliéster y el máximo de 30 s para algodón de la guía superan esos valores; antes de la práctica conviene confirmarlos con la ficha del proveedor de la película DTF.</p>
+    </div>
+  </section>
+
   <section class="ref">
     <div><h2>Tipos de equipo</h2><p class="sub">Categorías de los manuales de termofijadoras publicados por Servicolombia DC.</p></div>
     <div class="ref-body">
       <ul class="types"><li>Plana</li><li>Portátil</li><li>8 en 1</li><li>De gorras</li><li>De lápices</li></ul>
     </div>
+  </section>
+
+  <section class="ref gl-sec" id="glSection" aria-labelledby="glTitle">
+    <div><h2 id="glTitle">Glosario</h2><p class="sub">Siglas y términos del controlador, del equipo y de los procesos de estampado que aparecen en el simulador.</p>
+      <label class="gl-search">Buscar término<input type="search" id="glQ" placeholder="Ej.: SV, P‑1, TPU"></label></div>
+    <div class="ref-body"><section class="gl-group" aria-labelledby="gl_ctl"><h3 id="gl_ctl">Controlador digital</h3><dl class="gl-list"><div class="gl-item" id="gl-0-0"><dt><b>SV</b><span><i>Set value</i>, valor fijado</span></dt><dd>Temperatura que el operador fija en el controlador y que la plancha debe mantener. En la tabla del fabricante se denomina SP (<i>set point</i>). Polo de poliéster: 185–205 °C.</dd></div><div class="gl-item" id="gl-0-1"><dt><b>PV</b><span><i>Process value</i>, valor medido</span></dt><dd>Temperatura real de la plancha, leída por la termocupla. Se muestra en la pantalla roja. El precalentado termina cuando PV llega a SV.</dd></div><div class="gl-item" id="gl-0-2"><dt><b>P‑1</b><span>Programa 1 · pre‑planchado</span></dt><dd>Tiempo del primer prensado, sin el arte, para retirar humedad y arrugas de la pieza. Polo de poliéster: 5–12 s; DTF: 3–5 s. La cuenta empieza al cerrar la prensa.</dd></div><div class="gl-item" id="gl-0-3"><dt><b>P‑2</b><span>Programa 2 · sublimado o transferencia</span></dt><dd>Tiempo del prensado con el arte. Polo de poliéster: 40–60 s; DTF algodón: 15–30 s. Al llegar a 0 suena la alarma y se enciende el indicador ALARMA.</dd></div><div class="gl-item" id="gl-0-4"><dt><b>SP</b><span><i>Set point</i></span></dt><dd>Temperatura fijada, término usado en la tabla del fabricante. Equivale a SV.</dd></div><div class="gl-item" id="gl-0-5"><dt><b>ST</b><span><i>Set time</i></span></dt><dd>Tiempo de prensado fijado, término usado en la tabla del fabricante. Equivale a P‑2.</dd></div><div class="gl-item" id="gl-0-6"><dt><b>SET</b><span>Tecla de programación</span></dt><dd>Cada pulsación avanza PV → SV → P‑1 → P‑2 → PV. Al volver a PV se guardan los valores. No funciona con la prensa cerrada.</dd></div><div class="gl-item" id="gl-0-7"><dt><b>▲ ▼</b><span>Teclas de ajuste</span></dt><dd>Suben o bajan el valor que parpadea en 1 °C o 1 s.</dd></div><div class="gl-item" id="gl-0-8"><dt><b>HEAT</b><span>Indicador de calentamiento</span></dt><dd>Encendido cuando el relé alimenta la resistencia.</dd></div><div class="gl-item" id="gl-0-9"><dt><b>ALARMA</b><span>Indicador de tiempo cumplido</span></dt><dd>Se enciende al terminar P‑1, P‑2 o ST: hay que subir la prensa.</dd></div><div class="gl-item" id="gl-0-10"><dt><b>HOT</b><span>Aviso de plancha caliente</span></dt><dd>Con la prensa apagada, la pantalla muestra HOT mientras la plancha supera 50 °C.</dd></div><div class="gl-item" id="gl-0-11"><dt><b>I/O</b><span>Interruptor de encendido</span></dt><dd>I: encendido. O: apagado.</dd></div></dl></section><section class="gl-group" aria-labelledby="gl_equipo"><h3 id="gl_equipo">Equipo y control térmico</h3><dl class="gl-list"><div class="gl-item" id="gl-1-0"><dt><b>SSR</b><span>Relé de estado sólido</span></dt><dd>Interruptor electrónico que conecta y desconecta la resistencia según la orden del controlador.</dd></div><div class="gl-item" id="gl-1-1"><dt><b>Termocupla tipo J</b><span>Sensor de temperatura</span></dt><dd>Par de metales hierro–constantán que genera una tensión proporcional a la temperatura (≈50–55 µV/°C).</dd></div><div class="gl-item" id="gl-1-2"><dt><b>Histéresis</b><span>Margen de control</span></dt><dd>Diferencia de temperatura entre el apagado y el encendido del relé. En el simulador: 1 °C.</dd></div><div class="gl-item" id="gl-1-3"><dt><b>Control todo o nada</b><span>Modo de control</span></dt><dd>La resistencia recibe toda la potencia o ninguna; el relé alterna para mantener PV cerca de SV.</dd></div><div class="gl-item" id="gl-1-4"><dt><b>PTFE</b><span>Politetrafluoroetileno (teflón)</span></dt><dd>Recubrimiento antiadherente de la plancha y de las hojas teflonadas.</dd></div><div class="gl-item" id="gl-1-5"><dt><b>Presión</b><span>Fuerza de cierre</span></dt><dd>Regulada con la perilla: baja, media o alta.</dd></div></dl></section><section class="gl-group" aria-labelledby="gl_proc"><h3 id="gl_proc">Procesos de estampado</h3><dl class="gl-list"><div class="gl-item" id="gl-2-0"><dt><b>Sublimación</b><span>Proceso de transferencia</span></dt><dd>La tinta pasa de sólido a gas con el calor y se fija en fibras de poliéster o en recubrimientos de poliéster.</dd></div><div class="gl-item" id="gl-2-1"><dt><b>DTF</b><span><i>Direct to film</i></span></dt><dd>Impresión sobre película PET con tinta CMYK, capa de blanco y polvo adhesivo TPU; el calor fija la capa sobre la tela.</dd></div><div class="gl-item" id="gl-2-2"><dt><b>TPU</b><span>Poliuretano termoplástico</span></dt><dd>Polvo adhesivo del transfer DTF; se funde en la prensa y adhiere la tinta a la fibra.</dd></div><div class="gl-item" id="gl-2-3"><dt><b>PET</b><span>Tereftalato de polietileno</span></dt><dd>Película transparente que soporta la impresión DTF y se retira después del prensado.</dd></div><div class="gl-item" id="gl-2-4"><dt><b><i>Hot peel</i> / <i>cold peel</i></b><span>Despegue en caliente / en frío</span></dt><dd>Retiro del film DTF al levantar la prensa o con la lámina completamente fría, según la película.</dd></div><div class="gl-item" id="gl-2-5"><dt><b><i>White underbase</i></b><span>Capa de blanco</span></dt><dd>Tinta blanca opaca bajo el diseño DTF que permite estampar sobre telas oscuras.</dd></div><div class="gl-item" id="gl-2-6"><dt><b>DTG</b><span><i>Direct to garment</i></span></dt><dd>Impresión directa sobre la prenda; requiere líquido de pretratamiento.</dd></div><div class="gl-item" id="gl-2-7"><dt><b>Migración de colorante</b><span>Defecto</span></dt><dd>Paso del colorante de la tela sintética al estampado por exceso de temperatura o tiempo.</dd></div><div class="gl-item" id="gl-2-8"><dt><b>Efecto fantasma</b><span>Defecto</span></dt><dd>Doble imagen o sombra causada al mover el papel durante o después del prensado.</dd></div></dl></section><section class="gl-group" aria-labelledby="gl_arte"><h3 id="gl_arte">Arte e impresión</h3><dl class="gl-list"><div class="gl-item" id="gl-3-0"><dt><b>DPI</b><span>Puntos por pulgada</span></dt><dd>Resolución de impresión del arte. Se usan 300 DPI.</dd></div><div class="gl-item" id="gl-3-1"><dt><b>Modo espejo</b><span>Imagen invertida</span></dt><dd>El arte se imprime invertido porque la cara impresa se apoya sobre la pieza.</dd></div><div class="gl-item" id="gl-3-2"><dt><b>ICC</b><span>Perfil de color</span></dt><dd>Archivo que ajusta la conversión de color entre la computadora, la tinta y el papel.</dd></div><div class="gl-item" id="gl-3-3"><dt><b>CMYK</b><span>Cian, magenta, amarillo, negro</span></dt><dd>Tintas de proceso de la impresora.</dd></div><div class="gl-item" id="gl-3-4"><dt><b>g/m²</b><span>Gramaje</span></dt><dd>Peso del papel por metro cuadrado. Papel de sublimación: 90–120 g/m².</dd></div></dl></section><p class="note" id="glNone" hidden>Sin resultados.</p></div>
   </section>
 
   <section class="ref">
@@ -956,6 +1022,8 @@ section.ref.sg-sec{grid-template-columns:minmax(0,1fr)}
         <li>Laser Textil. Repuestos para termofijadora. lasertextil.com</li>
         <li>Termofijadoras.com. Repuestos y consumibles. termofijadoras.com</li>
         <li>JMS. Folleto NL‑27 (fundas Nomex®). jmssl.com</li>
+        <li>DTF Transfers Now. <i>DTF Heat Press Settings: Temperature Guide by Fabric</i>. dtftransfersnow.com</li>
+        <li>Ninja Transfers. <i>Instrucciones de prensa de calor para transferencias DTF</i>. ninjatransfers.com</li>
       </ol>
     </div>
   </section>
@@ -1191,7 +1259,8 @@ const PRODUCTS = [
   ['Tomatodos aluminio',190,90,'mug'],['Termo lata',190,45,'mug'],['Taza de cerámica',180,180,'mug'],
   ['Taza mágica reactiva',180,180,'mug'],['Platos de cerámica',200,900,'plato'],['Chopp cervecero',200,190,'mug'],
   ['Termo para autos',190,90,'mug'],['Gorras',190,45,'gorra'],
-].map(([n,t,s,k])=>({n,t,s,k}));
+  ['Polo de algodón · DTF',160,15,'tex','dtf'],['Polo de poliéster o mezcla >50 % sintético · DTF',140,45,'tex','dtf'],
+].map(([n,t,s,k,src])=>({n,t,s,k,src:src||'freesub'}));
 const RES_NAME = { tex:'plancha plana 38 × 38 cm', rig:'plancha plana 38 × 38 cm', mug:'banda cilíndrica para mug', plato:'resistencia para platos', gorra:'resistencia curva para gorras' };
 
 /* ---------- Renderer ---------- */
@@ -1495,10 +1564,12 @@ renderer.domElement.addEventListener('pointerup',e=>{
 
 /* ---------- Simulación ---------- */
 const sel = $('product');
-PRODUCTS.forEach((p,i)=>{ const o = document.createElement('option'); o.value = i; o.textContent = `${p.n} · ${p.t} °C · ${p.s} s`; sel.appendChild(o); });
+{ const og = { freesub:Object.assign(document.createElement('optgroup'),{label:'Tabla Freesub · sublimación, transfer y vinil'}), dtf:Object.assign(document.createElement('optgroup'),{label:'Transferencia DTF · guía del curso'}) };
+  PRODUCTS.forEach((p,i)=>{ const o = document.createElement('option'); o.value = i; o.textContent = `${p.n} · ${p.t} °C · ${p.s} s`; og[p.src].appendChild(o); }); sel.append(og.freesub, og.dtf); }
 const ttBody = document.querySelector('#ttTable tbody');
 let lastGroup = '';
 PRODUCTS.forEach((p,i)=>{
+  if (p.src==='dtf') return;
   const g = (p.k==='tex'||p.k==='rig') ? 'Plancha termo‑fijadora 38 × 38 cm' : 'Resistencias';
   if (g!==lastGroup){ ttBody.insertAdjacentHTML('beforeend',`<tr class="group-row"><td colspan="4">${g}</td></tr>`); lastGroup = g; }
   const tr = document.createElement('tr'); tr.className = 'pick'; tr.dataset.i = i; tr.tabIndex = 0;
@@ -1563,7 +1634,7 @@ $('s3').onclick = ()=>{
   S.state = 'pressing'; S.left = S.st; refreshButtons();
   if (flat()){
     animate(pivot,{ rotateX:0, duration:D(900), ease:'inQuad', onComplete:()=>{ S.pv = Math.max(25,S.pv-9); } });
-    setStatus('Prensado','El interruptor de proximidad detecta el brazo cerrado e inicia el conteo. En sublimación la tinta pasa de sólido a gas y se fija en el poliéster o en el recubrimiento del sustrato.');
+    setStatus('Prensado','El interruptor de proximidad detecta el brazo cerrado e inicia el conteo. ' + (S.prod && S.prod.src==='dtf' ? 'En DTF el adhesivo TPU se funde y fija la capa de tinta sobre la superficie de la fibra.' : 'En sublimación la tinta pasa de sólido a gas y se fija en el poliéster o en el recubrimiento del sustrato.'));
     flyTo([4.6,3.0,5.4],[0,0.9,0]);
   } else {
     if (S.prod.k==='gorra') animate(capShellG,{ y:0.24, duration:D(500) });
@@ -1638,7 +1709,15 @@ const MATS = [
   { id:'mayolica', name:'Mayólica o fotoroca 20 × 20 cm', sub:'rigido', w:20, h:20, t:0.6, sv:[195,205], svDef:200, p1:[0,0], p1Def:0, p2:[380,420], p2Def:400, pres:'media', pre:false, inner:false, suit:1,
     ref:[0.5,1.5], refName:'Borde superior', artW:18, colors:['#fbfbf8'],
     note:'Tabla Freesub: mayólica o fotoroca 200 °C · 400 s. Pieza rígida: sin pre‑planchado. La fuente no indica presión.',
-    list:['Mayólica con recubrimiento para sublimación'] },
+    list:['Mayólica con recubrimiento para sublimación'] },,
+  { id:'dtfalg', proc:'dtf', name:'Polo de algodón 100 % · transfer DTF', sub:'polo', sv:[150,170], svDef:160, p1:[3,5], p1Def:4, p2:[15,30], p2Def:15, pres:'media', presAlt:['media','alta'], pre:true, inner:false, suit:1,
+    ref:[7,10], refName:'Cuello', artW:24, colors:['#2f3a4a','#2f3a4a'],
+    note:'Transferencia DTF. Parámetros de la guía del curso: 150–170 °C durante 15–30 s (valor frecuente 160 °C · 15 s), preplanchado 3–5 s, presión media a alta. No figura en la tabla Freesub. Proveedores consultados indican 10–15 s.',
+    list:['Polo de algodón en la talla elegida (cualquier color)'] },
+  { id:'dtfpes', proc:'dtf', name:'Polo de poliéster o mezcla >50 % sintético · transfer DTF', sub:'polo', sv:[135,145], svDef:140, p1:[3,5], p1Def:4, p2:[40,50], p2Def:45, pres:'media', presAlt:['media','alta'], pre:true, inner:false, suit:1,
+    ref:[7,10], refName:'Cuello', artW:24, colors:['#1b1e22','#1b1e22'],
+    note:'Transferencia DTF. Guía del curso: 140 °C durante 45 s para evitar daño térmico y migración de colorantes; el rango ±5 es un valor de taller. Proveedores consultados indican 138–146 °C durante 8–10 s con despegue en frío.',
+    list:['Polo de poliéster o mezcla en la talla elegida (cualquier color)'] }
 ];
 let MAT = MATS[0];
 
@@ -1684,17 +1763,17 @@ const STEPS_ALL = [
   { k:'open1', g:3, when:m=>m.pre, label:()=>'Subir la prensa · pre‑planchado',
     det:()=>['Al sonar la alarma P‑1, subir la manija sujetándola hasta el tope.','Revisar que la zona de estampado quedó lisa y sin humedad.'],
     saf:()=>['Al abrir sale vapor de la tela: mantener el rostro alejado.'] },
-  { k:'art', g:4, label:()=>'Colocar el arte final',
-    det:()=>['Si no hay arte cargado, pulsar «Insertar arte final».','Colocar el papel con la cara impresa hacia la pieza.',`Centrar: eje del arte sobre la línea central (desvío máximo ±1 cm).`,`Medir desde ${MAT.refName.toLowerCase()==='cuello'?'la base del cuello':'el borde superior de la pieza'} hasta el borde superior del arte: ${$('refMin').value}–${$('refMax').value} cm.`,'Verificar que el arte quede dentro del área de la plancha de 38 × 38 cm (recuadro azul).','Ajustar con las flechas en pasos de 0,5 cm.'],
-    saf:()=>['La pieza y el plato están calientes: manipular el papel por los bordes.'] },
+  { k:'art', g:4, label:()=> isDTF() ? 'Colocar el transfer DTF' : 'Colocar el arte final',
+    det:()=>['Si no hay arte cargado, pulsar «Insertar arte final».', isDTF() ? 'Colocar el film con el adhesivo (polvo TPU) hacia la tela y la película PET hacia arriba: el diseño se ve al derecho a través del film.' : 'Colocar el papel con la cara impresa hacia la pieza.',`Centrar: eje del arte sobre la línea central (desvío máximo ±1 cm).`,`Medir desde ${MAT.refName.toLowerCase()==='cuello'?'la base del cuello':'el borde superior de la pieza'} hasta el borde superior del arte: ${$('refMin').value}–${$('refMax').value} cm.`,'Verificar que el arte quede dentro del área de la plancha de 38 × 38 cm (recuadro azul).','Ajustar con las flechas en pasos de 0,5 cm.'],
+    saf:()=>[`La pieza y el plato están calientes: manipular ${isDTF()?'el film':'el papel'} por los bordes.`] },
   { k:'tape', g:4, label:()=>'Fijar con cinta térmica',
-    det:()=>['Cortar 4 tiras de cinta térmica de 3–4 cm.','Una tira en diagonal por esquina: mitad sobre el papel, mitad sobre la pieza.','Orden: superior izquierda, superior derecha, inferior derecha, inferior izquierda (anillo rojo).','No usar cinta adhesiva común: se funde y deja residuos.'],
+    det:()=>['Cortar 4 tiras de cinta térmica de 3–4 cm.',`Una tira en diagonal por esquina: mitad sobre ${isDTF()?'el film':'el papel'}, mitad sobre la pieza.`,'Orden: superior izquierda, superior derecha, inferior derecha, inferior izquierda (anillo rojo).','No usar cinta adhesiva común: se funde y deja residuos.'],
     saf:()=>['Pegar la cinta sin apoyar el antebrazo sobre el plato inferior.'] },
   { k:'teflon', g:4, label:()=>'Colocar el teflón superior',
-    det:()=>['Cubrir todo el plato con la hoja teflonada o siliconada superior.','La hoja queda lisa, sin pliegues sobre el papel.'],
+    det:()=>['Cubrir todo el plato con la hoja teflonada o siliconada superior.',`La hoja queda lisa, sin pliegues sobre ${isDTF()?'el film':'el papel'}.`],
     saf:()=>[] },
-  { k:'press2', g:5, label:()=>'Bajar la prensa · sublimado',
-    det:()=>[`Perilla de presión en «${MAT.pres}» antes de cerrar.`,`Verificar PV ≈ SV (${rU(MAT.sv[0],MAT.sv[1])}).`,'Bajar la manija hasta que trabe; el conteo P‑2 empieza al cerrar.'],
+  { k:'press2', g:5, label:()=> isDTF() ? 'Bajar la prensa · transferencia DTF' : 'Bajar la prensa · sublimado',
+    det:()=>[`Perilla de presión en «${(MAT.presAlt||[MAT.pres]).join('» o «')}» antes de cerrar.`,`Verificar PV ≈ SV (${rU(MAT.sv[0],MAT.sv[1])}).`,'Bajar la manija hasta que trabe; el conteo P‑2 empieza al cerrar.'],
     saf:()=>['Manos fuera de la zona de cierre.','No forzar la manija: si no traba, abrir y reducir la presión con la perilla.'] },
   { k:'open2', g:5, label:()=>'Subir la prensa al sonar la alarma',
     det:()=>['Al sonar la alarma P‑2, subir la manija de inmediato y sujetarla hasta el tope.'],
@@ -1702,11 +1781,15 @@ const STEPS_ALL = [
   { k:'tefoff', g:6, label:()=>'Retirar el teflón superior',
     det:()=>['Con guantes térmicos, tomar el teflón por una esquina y retirarlo.'],
     saf:()=>['El teflón está caliente: usar guantes térmicos.'] },
-  { k:'peel', g:6, label:()=>'Retirar el papel',
-    det:()=>['Con guante, sujetar una esquina del papel.','Despegar en un solo tirón vertical, continuo, sin detenerse.','No arrastrar el papel sobre la superficie: produce sombras o efecto fantasma.'],
-    saf:()=>['Papel y tinta a temperatura de prensado: usar guantes térmicos.'] },
-  { k:'view', g:6, label:()=>'Visualizar el estampado sublimado',
-    det:()=>['La cámara se acerca a la pieza sobre el plato inferior.','Revisar nitidez de bordes, intensidad del color, sentido del diseño, ausencia de sombras y posición respecto a la referencia.','La ventana «Estampado sublimado» muestra la pieza con el diseño transferido, las medidas y la revisión visual.'],
+  { k:'peel', g:6, label:()=> isDTF() ? 'Retirar el film PET' : 'Retirar el papel',
+    det:()=> isDTF()
+      ? ['Despegue en caliente (hot peel): con guante, sujetar una esquina del film y retirarlo al levantar la prensa, en un movimiento continuo y a ras de la tela.','Despegue en frío (cold peel), si la ficha de la película lo indica: esperar a que la lámina se enfríe por completo antes de retirarla.','Si una zona del diseño se levanta con el film, volver a colocarlo y prensar de nuevo.']
+      : ['Con guante, sujetar una esquina del papel.','Despegar en un solo tirón vertical, continuo, sin detenerse.','No arrastrar el papel sobre la superficie: produce sombras o efecto fantasma.'],
+    saf:()=>[isDTF() ? 'Film y adhesivo a temperatura de prensado: usar guantes térmicos.' : 'Papel y tinta a temperatura de prensado: usar guantes térmicos.'] },
+  { k:'view', g:6, label:()=> isDTF() ? 'Visualizar el estampado DTF' : 'Visualizar el estampado sublimado',
+    det:()=> isDTF()
+      ? ['La cámara se acerca a la pieza sobre el plato inferior.','Revisar adherencia en bordes y detalles finos, ausencia de grietas, sentido del diseño y posición respecto a la referencia.','Opcional, fuera del simulador: planchado de sellado de 3–5 s con papel manteca (acabado mate) u hoja de teflón (acabado brillante).','La ventana «Estampado DTF» muestra la pieza con el diseño transferido, las medidas y la revisión visual.']
+      : ['La cámara se acerca a la pieza sobre el plato inferior.','Revisar nitidez de bordes, intensidad del color, sentido del diseño, ausencia de sombras y posición respecto a la referencia.','La ventana «Estampado sublimado» muestra la pieza con el diseño transferido, las medidas y la revisión visual.'],
     saf:()=>['La pieza y el plato siguen calientes: observar sin apoyar las manos en el plato.'] },
   { k:'remove', g:6, label:()=>`Retirar ${piece()} de la prensa con el estampado`,
     det:()=> MAT.sub==='polo'
@@ -2010,7 +2093,7 @@ const PRE = {
   config: ()=> !Ctl.power ? 'Encienda la prensa antes de configurar.' : !cfgOk() ? `Valores fuera de rango para ${MAT.name}. ${cfgFixText()}` : Ctl.mode!=='run' ? 'Valores correctos. Pulse SET hasta volver a la lectura PV para guardarlos.' : null,
   preheat: ()=> !Ctl.power ? 'La prensa está apagada.' : S.pv < Ctl.sv-3 ? `PV ${tU(S.pv)} todavía bajo SV ${tU(Ctl.sv)}. Espere el fin del calentamiento.` : null,
   place: ()=> !Ctl.power ? 'La prensa está apagada.' : null,
-  art: ()=> !A.loaded ? 'Inserte el arte final (PDF o imagen) o use el arte de muestra.' : !($('ck2').checked && $('ck3').checked) ? 'Confirme las fases 1 y 2 en «Preparación»: arte impreso y tinta seca.' : null,
+  art: ()=> !A.loaded ? 'Inserte el arte final (PDF o imagen) o use el arte de muestra.' : !($('ck2').checked && $('ck3').checked) ? (isDTF() ? 'Confirme las fases 1 y 2 en «Preparación»: transfer impreso y polvo TPU curado.' : 'Confirme las fases 1 y 2 en «Preparación»: arte impreso y tinta seca.') : null,
   press1: ()=> R.closing ? 'La prensa está en movimiento.' : null,
   open1: ()=> !R.closed ? 'La prensa aún no termina de cerrar.' : null,
   press2: ()=> R.closing ? 'La prensa está en movimiento.' : !posState().inPlaten ? 'El arte sale del área de la plancha. Reubíquelo antes de prensar.' : null,
@@ -2219,7 +2302,10 @@ function updateProc(dt){
 
 /* --- Preparación: material, lista, seguridad --- */
 MATS.forEach((m,i)=>{ const o = document.createElement('option'); o.value = i; o.textContent = m.name; $('mat').appendChild(o); });
-function listItems(){ return [...MAT.list.map(t=>({t,req:true})), ...BASE_LIST.map(t=>({t,req:true})), {t:'Rodillo quitapelusas',req:false}, {t:'Tijeras para la cinta',req:false}]; }
+const BASE_LIST_DTF = ['Prensa térmica con plancha de 38 × 38 cm','Transfer DTF impreso (film PET con polvo adhesivo TPU)','Cinta térmica','Hoja teflonada superior','Guantes térmicos','Regla o cinta métrica','Mesa de reposo plana'];
+const isDTF = ()=> MAT && MAT.proc==='dtf';
+const presOk = p => (MAT.presAlt || [MAT.pres]).includes(p);
+function listItems(){ return [...MAT.list.map(t=>({t,req:true})), ...(isDTF() ? BASE_LIST_DTF : BASE_LIST).map(t=>({t,req:true})), ...(isDTF() ? [{t:'Papel manteca para el sellado mate',req:false}] : []), {t:'Rodillo quitapelusas',req:false}, {t:'Tijeras para la cinta',req:false}]; }
 function buildMatList(){
   $('matList').innerHTML = listItems().map((it,i)=>`<label class="chk"><input type="checkbox" id="ml${i}"> ${it.t}${it.req?'':' <small>(opcional)</small>'}</label>`).join('');
   $('matList').querySelectorAll('input').forEach(c=> c.addEventListener('change',paintMatList)); paintMatList();
@@ -2242,7 +2328,29 @@ function applyMaterial(){
   $('tallaRow').hidden = MAT.sub!=='polo'; fillTallas();
   $('refMin').value = MAT.ref[0]; $('refMax').value = MAT.ref[1]; $('refLbl').textContent = `${MAT.refName} → arte, referencia (cm)`;
   if (!A.loaded) A.w = MAT.artW; setArtWidth(A.loaded ? Math.min(A.w, 38) : MAT.artW);
+  applyProcTexts();
   paintMatInfo(); buildMatList(); buildSteps(); buildCards(); procReset(true); buildProps(); paintMatsOv();
+}
+const PROC_TXT = {
+  sub:{ ck:['Arte editado en modo espejo a 300 DPI','Impreso en papel de sublimación de 90–120 g/m² con perfil ICC','Tinta secada 2–5 min sobre superficie plana'],
+    ph0:{ name:'Preparación del diseño e impresión', ops:['Edición del arte en modo espejo a 300 DPI','Impresión sobre papel de sublimación de 90–120 g/m²','Opcional: rasgado suave de los bordes del papel'], prm:'Tintas de sublimación y perfil ICC activo.', rng:'2–5 min' },
+    ph1:{ name:'Secado de la tinta', ops:['Reposo de la lámina impresa sobre superficie plana'], prm:'Reposo a temperatura ambiente.', rng:'2–5 min' },
+    ph4:{ name:'Transferencia térmica (sublimado)', ops:['Bajada de la palanca','La tinta pasa a gas y se fija en el poliéster','Apertura al sonar el temporizador'] },
+    ph5ops:['Levantamiento de la prensa','Retiro del papel en un solo tirón vertical','Pieza a mesa de reposo horizontal'], pv:'Estampado sublimado' },
+  dtf:{ ck:['Transfer impreso en espejo sobre film PET a 300 DPI (tinta CMYK y capa de blanco)','Polvo adhesivo TPU aplicado sobre la tinta húmeda','Polvo TPU curado según la ficha del film'],
+    ph0:{ name:'Diseño e impresión del transfer DTF', ops:['Arte a 300 DPI, impreso en espejo sobre film PET','Tinta CMYK con capa de tinta blanca opaca (white underbase)','Aplicación del polvo adhesivo TPU'], prm:'El polo no requiere líquido de pretratamiento.', rng:'según el equipo DTF' },
+    ph1:{ name:'Curado del polvo TPU', ops:['Fusión del polvo adhesivo sobre la tinta, según la ficha del film'], prm:'Transfer frío y plano antes de prensar.', rng:'según la ficha del film' },
+    ph4:{ name:'Transferencia térmica (DTF)', ops:['Bajada de la palanca','El adhesivo TPU se funde y fija la capa de tinta sobre la fibra','Apertura al sonar el temporizador'] },
+    ph5ops:['Levantamiento de la prensa','Retiro del film PET en caliente o en frío, según la película','Pieza a mesa de reposo horizontal'], pv:'Estampado DTF' } };
+function ckText(id){ return PROC_TXT[isDTF()?'dtf':'sub'].ck[+id.slice(2)-1]; }
+function applyProcTexts(){
+  const P = PROC_TXT[isDTF()?'dtf':'sub'];
+  ['ck1','ck2','ck3'].forEach((id,k)=>{ const lab = $(id).parentElement; lab.lastChild.nodeValue = ' ' + P.ck[k]; });
+  Object.assign(PHASES[0], { name:P.ph0.name, ops:P.ph0.ops, prm:()=>P.ph0.prm, range:()=>({text:P.ph0.rng}) });
+  Object.assign(PHASES[1], { name:P.ph1.name, ops:P.ph1.ops, prm:()=>P.ph1.prm, range:()=>({text:P.ph1.rng}) });
+  Object.assign(PHASES[4], { name:P.ph4.name, ops:P.ph4.ops });
+  PHASES[5].ops = P.ph5ops;
+  const pv = $('pvTitle'); if (pv) pv.textContent = P.pv;
 }
 $('mat').addEventListener('change',()=>{ applyMaterial(); setStatus('Material cambiado', `${MAT.name}. Parámetros y secuencia actualizados.`); });
 $('talla').addEventListener('change',()=>{ buildPiece(); });
@@ -2322,8 +2430,9 @@ function paintSheet(){
 function evaluate(){
   const notes = [], ps = posState();
   const ph = [3,4,5,6].map(g=>({ g, v:phaseTime(g), rg:PHASES[g-1].range(), f:PHASES[g-1] })).filter(p=>!p.rg.na);
-  if (MAT.suit<1) notes.push(`${MAT.name}: material no indicado para sublimación; transferencia tenue.`);
-  if (!$('ck1').checked && R.t.art) notes.push('El arte no se imprimió en modo espejo: el diseño queda invertido.');
+  if (MAT.suit<1) notes.push(`${MAT.name}: material no indicado para sublimación; transferencia tenue. Para este polo, el catálogo indica DTF: elija un material «transfer DTF».`);
+  if (!$('ck1').checked && R.t.art) notes.push(isDTF() ? 'El transfer no se imprimió en espejo sobre el film: el diseño queda invertido.' : 'El arte no se imprimió en modo espejo: el diseño queda invertido.');
+  if (isDTF() && R.t.view) notes.push('Planchado de sellado opcional (3–5 s con papel manteca u hoja de teflón): no se simula; registrarlo en la práctica física.');
   ph.forEach(({g,v,rg,f})=>{ if (v===null) return; if (v<rg.min) notes.push(`Fase ${g} (${f.name.toLowerCase()}): ${fmt(v)}, menor que ${rg.text}.`); if (v>rg.max) notes.push(`Fase ${g} (${f.name.toLowerCase()}): ${fmt(v)}, mayor que ${rg.text}.`); });
   const p5 = phaseTime(5), p6 = phaseTime(6);
   if (p5!==null && p5<MAT.p2[0]) notes.push('Sublimado corto: transferencia incompleta y colores tenues.');
@@ -2331,7 +2440,7 @@ function evaluate(){
   if (p6!==null && p6>10) notes.push('Desmoldeo lento: riesgo de sombra o efecto fantasma.');
   if (R.t.open2 && !R.auto && R.alarmAt2 && R.t.open2-R.alarmAt2>3) notes.push(`Apertura ${fmt(R.t.open2-R.alarmAt2)} después de la alarma P‑2.`);
   if (R.t.open2 && R.c2 && R.t.open2 < R.c2+Ctl.p2-0.5) notes.push('Apertura de la prensa antes de la alarma P‑2.');
-  if (R.t.press2 && R.presAtPress!==MAT.pres) notes.push(`Presión ${R.presAtPress}; la indicada para ${MAT.name} es ${MAT.pres}.`);
+  if (R.t.press2 && !presOk(R.presAtPress)) notes.push(`Presión ${R.presAtPress}; la indicada para ${MAT.name} es ${MAT.pres}.`);
   if (R.t.art){ if (!ps.centered) notes.push(`Arte descentrado ${Math.abs(A.dx).toFixed(1)} cm hacia la ${A.dx>0?'derecha':'izquierda'}.`);
     if (!ps.dyOk) notes.push(`Distancia ${MAT.refName.toLowerCase()} → arte de ${A.dy.toFixed(1)} cm, fuera de la referencia ${ps.mn}–${ps.mx} cm.`);
     if (A.w/10 > PIECE_W-0.2) notes.push('El ancho del arte supera el ancho útil de la pieza.'); }
@@ -2363,7 +2472,7 @@ function trackHTML(){
 }
 function trackText(){
   const e = evaluate();
-  return ['SEGUIMIENTO · PRÁCTICA DE SUBLIMACIÓN', `Material: ${MAT.name}`, `Tiempo: ${fmtClock(R.clock)} · Pasos: ${e.okSteps}/${STEPS.length} · Rechazos: ${R.errors}`, `Parámetros: SV ${tU(Ctl.sv)}, P-1 ${Ctl.p1} s, P-2 ${Ctl.p2} s, presión ${PRES}`, '', 'Tiempos por fase:',
+  return [isDTF() ? 'SEGUIMIENTO · PRÁCTICA DE TRANSFERENCIA DTF' : 'SEGUIMIENTO · PRÁCTICA DE SUBLIMACIÓN', `Material: ${MAT.name}`, `Tiempo: ${fmtClock(R.clock)} · Pasos: ${e.okSteps}/${STEPS.length} · Rechazos: ${R.errors}`, `Parámetros: SV ${tU(Ctl.sv)}, P-1 ${Ctl.p1} s, P-2 ${Ctl.p2} s, presión ${PRES}`, '', 'Tiempos por fase:',
     ...e.ph.map(({g,v,rg,f})=>`  Fase ${g} ${f.name}: ${v===null?'pendiente':fmt(v)} (guía ${rg.text})`), '', 'Mediciones (anotado / simulador):',
     ...STEPS.flatMap(s=>(MEAS[s.k]||[]).map(m=>{ const key = `${s.k}_${m.id}`, inp = INPUTS[key], v = simDisp(m); return `  ${s.label()} · ${mLab(m)}: ${inp||'—'} / ${v===null?'—':v} ${unitLab(m.u)}`; })),
     '', 'Observaciones:', ...e.notes.map(n=>'  - '+n), '', 'Registro:', ...R.log.map((l,i)=>`  ${i+1}. [${fmtClock(l.t)}] ${l.text} — ${l.ok===true?'correcto':l.ok===false?'rechazado':'registro'}`)].join('\n');
@@ -2656,7 +2765,7 @@ function paintMatsOv(){
   const req = its.filter(i=>i.req).length, ok = its.filter((it,i)=> it.req && $(`ml${i}`)?.checked).length;
   const c = $('matsOvCount'); c.textContent = `${ok}/${req}`; c.className = `chip ${ok===req?'ok':'warn'}`;
   $('matsOvList').innerHTML = its.map((it,i)=>`<li><label><input type="checkbox" data-i="${i}"${$(`ml${i}`)?.checked?' checked':''}> <span>${it.t}${it.req?'':' <small>(opcional)</small>'}</span></label></li>`).join('');
-  $('matsOvArt').innerHTML = [['ck1','Arte editado en modo espejo a 300 DPI'],['ck2','Impreso en papel de 90–120 g/m² con perfil ICC'],['ck3','Tinta secada 2–5 min sobre superficie plana']]
+  $('matsOvArt').innerHTML = ['ck1','ck2','ck3'].map(id=>[id, ckText(id)])
     .map(([id,t])=>`<li><label><input type="checkbox" data-ck="${id}"${$(id).checked?' checked':''}> <span>${t}</span></label></li>`).join('');
 }
 $('matsOvList').addEventListener('change',e=>{ const i = e.target.dataset.i; if (i===undefined) return; const c = $(`ml${i}`); c.checked = e.target.checked; c.dispatchEvent(new Event('change',{bubbles:true})); });
@@ -2674,7 +2783,7 @@ const SLOTS = [[-5.55,3.65],[-4.4,3.65],[-3.25,3.65],[-5.55,4.5],[-4.4,4.5],[-3.
 let PROPS = [];
 function propKind(t){ const s = t.toLowerCase();
   if (s.includes('prensa')) return 'prensa'; if (s.includes('mesa de reposo')) return 'mesa'; if (s.includes('hoja teflonada interior')) return 'tefI';
-  if (s.includes('hoja teflonada superior')) return 'tefS'; if (s.includes('papel')) return 'papel'; if (s.includes('cinta t')) return 'cinta';
+  if (s.includes('hoja teflonada superior')) return 'tefS'; if (s.includes('papel manteca')) return 'tefS'; if (s.includes('papel') || s.includes('transfer dtf')) return 'papel'; if (s.includes('cinta t')) return 'cinta';
   if (s.includes('guantes')) return 'guantes'; if (s.includes('regla')) return 'regla'; if (s.includes('rodillo')) return 'rodillo'; if (s.includes('tijeras')) return 'tijeras';
   return 'pieza'; }
 function mkProp(kind){
@@ -2776,10 +2885,10 @@ const COND = {
   inner: ()=>[[ 'Pulsar «▶ Ejecutar paso» para insertar la hoja', false ]],
   press1: ()=>[[ 'Pulsar «▶ Ejecutar paso»; el conteo P‑1 empieza al cerrar', R.closed ]],
   open1: ()=>[[ `Alarma P‑1 (${Ctl.p1} s) · ${R.closed ? `${Math.max(0,Math.ceil(R.prog-(R.clock-R.closedAt)))} s restantes` : 'prensa abierta'}`, R.alarm ], [ R.auto ? 'Modo automatizado: la prensa se abre sola' : 'Al sonar, pulsar «▶ Ejecutar paso»', false ]],
-  art: ()=>[[ 'Arte final cargado (botón azul «Insertar arte final»)', A.loaded ], [ 'Fases 1 y 2 confirmadas: impreso y secado', $('ck2').checked && $('ck3').checked ], [ 'Pulsar «▶ Ejecutar paso» para colocar el papel', false ]],
+  art: ()=>[[ 'Arte final cargado (botón azul «Insertar arte final»)', A.loaded ], [ isDTF() ? 'Fases 1 y 2 confirmadas: transfer impreso y polvo TPU curado' : 'Fases 1 y 2 confirmadas: impreso y secado', $('ck2').checked && $('ck3').checked ], [ `Pulsar «▶ Ejecutar paso» para colocar ${isDTF()?'el transfer':'el papel'}`, false ]],
   tape: ()=>[[ `Cintas colocadas: ${R.tapes} de 4 · pulsar «▶ Ejecutar paso» una vez por esquina`, R.tapes>=4 ]],
   teflon: ()=>[[ 'Pulsar «▶ Ejecutar paso» para cubrir el plato', false ]],
-  press2: ()=>[[ 'Arte dentro de la plancha de 38 × 38 cm', posState().inPlaten ], [ `Perilla de presión en «${MAT.pres}» · actual «${PRES}»`, PRES===MAT.pres ], [ `PV cerca de SV · ${tU(S.pv)}`, Math.abs(S.pv-Ctl.sv)<=5 ]],
+  press2: ()=>[[ 'Arte dentro de la plancha de 38 × 38 cm', posState().inPlaten ], [ `Perilla de presión en «${(MAT.presAlt||[MAT.pres]).join('» o «')}» · actual «${PRES}»`, presOk(PRES) ], [ `PV cerca de SV · ${tU(S.pv)}`, Math.abs(S.pv-Ctl.sv)<=5 ]],
   open2: ()=>[[ `Alarma P‑2 (${Ctl.p2} s) · ${R.closed ? `${Math.max(0,Math.ceil(R.prog-(R.clock-R.closedAt)))} s restantes` : 'prensa abierta'}`, R.alarm ], [ R.auto ? 'Modo automatizado: la prensa se abre sola' : 'Al sonar, pulsar «▶ Ejecutar paso»', false ]],
   tefoff: ()=>[[ 'Pulsar «▶ Ejecutar paso» para retirar el teflón', false ]],
   peel: ()=>[[ 'Pulsar «▶ Ejecutar paso»: el papel se retira en un tirón vertical', false ]],
@@ -2820,11 +2929,12 @@ function guideFix(k, ci){
     case 'preheat': locate('#pHeat','Q'); say(S.pv>=Ctl.sv-3 ? 'PV ya alcanzó SV: pulse «▶ Ejecutar paso».' : 'Espere a que PV alcance SV. Para acortar la espera elija ×60 en «Velocidad del calentamiento».'); break;
     case 'art':
       if (!A.loaded){ locate('#paneQ .insert','Q'); say('Pulse el botón azul «Insertar arte final» o use el arte de muestra en «Preparación».'); }
+      else if (isDTF()){ locate('#ck2','P'); say('Marque en «Preparación» las casillas del transfer DTF: impreso en el film y polvo TPU curado.'); }
       else { openArtScreen(); say('Complete en esta pantalla: espejo, «Imprimir en papel de sublimación» y «Iniciar secado».'); } break;
     case 'tape': locate('#inAct','Q'); say(`Pulse «▶ Ejecutar paso» una vez por esquina (${R.tapes} de 4).`); break;
     case 'press2':
       if (!posState().inPlaten){ locate('#artCtl','Q'); say('Mueva el arte con las flechas hasta que el recuadro rojo quede dentro del recuadro azul de la plancha.'); }
-      else if (PRES!==MAT.pres){ locate(document.querySelector('#presLbl')?.parentElement,'Q'); say(`Elija «${MAT.pres}» en la perilla de presión.`); }
+      else if (!presOk(PRES)){ locate(document.querySelector('#presLbl')?.parentElement,'Q'); say(`Elija «${MAT.pres}» en la perilla de presión.`); }
       else { locate('#pHeat','Q'); say('Espere a que PV recupere SV.'); } break;
     case 'open1': case 'open2': locate('.ctl','Q'); say(R.auto ? 'Modo automatizado: la prensa se abrirá sola al terminar el conteo.' : 'Observe el conteo en la caja de control; al sonar la alarma pulse «▶ Ejecutar paso».'); break;
     case 'off': act('off','user'); break;
@@ -2951,12 +3061,14 @@ setInterval(()=>{ if (mode==='proc' && !$('paneQ').hidden) paintCond(); }, 250);
 /* --- Tabla del fabricante: procedimiento detallado por producto --- */
 const TB = { steps:[], done:{}, inline:{}, err:0, log:[] };
 function tbKind(p){
+  if (p.src==='dtf') return 'dtf';
   if (/transfer/i.test(p.n)) return 'transfer'; if (/vinil/i.test(p.n)) return 'vinil';
   if (p.k==='tex') return 'tex'; if (p.k==='rig') return 'rig'; return p.k; }
 function tbMaterials(p){
   const kd = tbKind(p);
-  const papel = kd==='transfer' ? 'Papel transfer impreso según su ficha técnica' : kd==='vinil' ? 'Vinil textil cortado en espejo y depurado' : 'Papel de sublimación impreso en espejo';
+  const papel = kd==='dtf' ? 'Transfer DTF impreso (film PET con polvo adhesivo TPU)' : kd==='transfer' ? 'Papel transfer impreso según su ficha técnica' : kd==='vinil' ? 'Vinil textil cortado en espejo y depurado' : 'Papel de sublimación impreso en espejo';
   const base = [p.n, papel, 'Cinta térmica', 'Guantes térmicos'];
+  if (kd==='dtf') return [...base, 'Hoja teflonada superior', 'Papel manteca para el sellado mate (opcional)'];
   if (kd==='tex' || kd==='transfer' || kd==='vinil') return [...base, 'Hoja teflonada superior', ...(kd==='tex' && /polo|bolso/i.test(p.n) ? ['Hoja teflonada interior'] : [])];
   if (kd==='rig') return [...base, 'Hoja teflonada superior', 'Paño seco para limpiar la superficie'];
   if (kd==='mug') return [...base, 'Resistencia cilíndrica del tamaño de la pieza (11, 15 o 40 oz)'];
@@ -2970,6 +3082,7 @@ function tbSteps(p){
     tex: [ ...(isPolo ? ['Pre‑planchar la prenda 5–12 s para retirar humedad y arrugas.'] : []), ...(/polo|bolso/i.test(p.n) ? ['Insertar la hoja teflonada dentro de la pieza, bajo la zona de estampado.'] : []),
       'Colocar el papel con la cara impresa hacia la tela, centrado.', 'Fijar las cuatro esquinas con cinta térmica.' ],
     transfer: [ 'Imprimir en papel transfer según su ficha (en espejo si es papel para tela clara; sin espejo si es para tela oscura).', 'Recortar el contorno del diseño dejando 2–3 mm de margen.', 'Colocar el diseño sobre la prenda según la ficha del papel.' ],
+    dtf: [ 'Pre‑planchar el polo 3–5 s para retirar humedad y alisar la superficie.', 'Colocar el transfer DTF con el adhesivo hacia la tela y la película PET hacia arriba: el diseño se ve al derecho a través del film.', 'Centrar el diseño y fijarlo con cinta térmica si el film se desplaza.', 'No requiere líquido de pretratamiento.' ],
     vinil: [ 'Cortar el vinil textil en modo espejo.', 'Retirar el material sobrante alrededor del diseño (depilado).', 'Colocar el vinil con la lámina portadora hacia arriba.' ],
     rig: [ 'Limpiar la cara recubierta con un paño seco: sin polvo ni huellas.', 'Colocar el papel con la cara impresa sobre la cara recubierta.', 'Fijar con cinta térmica en los bordes.', ...(glass ? ['El cristal puede romperse por cambios bruscos de temperatura: manipular con cuidado.'] : []) ],
     mug: [ 'Recortar el papel a la altura de la pieza.', 'Envolver la pieza con la cara impresa hacia la superficie, sin holguras.', 'Fijar con cinta térmica en la unión y en los bordes superior e inferior.', ...(magic ? ['Taza mágica: el color cambia con el calor; no exceder el tiempo indicado.'] : []) ],
@@ -2979,19 +3092,20 @@ function tbSteps(p){
   const place = flat ? [ 'Colocar la pieza centrada sobre el plato inferior.', 'Cubrir con la hoja teflonada superior.' ]
     : kd==='mug' ? [ 'Introducir la pieza en la resistencia cilíndrica.', 'Ajustar la perilla de la banda para que apriete de forma pareja.' ]
     : kd==='plato' ? [ 'Colocar el plato centrado sobre la resistencia para platos.' ] : [ 'Colocar la gorra en la horma, bajo la resistencia curva.' ];
-  const peel = kd==='transfer' || kd==='vinil' ? [ 'Al sonar la alarma, abrir la prensa.', 'Retirar la lámina o el papel en caliente o en frío, según la ficha del fabricante.' ]
+  const peel = kd==='dtf' ? [ 'Al sonar la alarma, subir la manija.', 'Retirar el teflón superior.', 'Despegue en caliente (hot peel): retirar el film PET al levantar la prensa, en un movimiento continuo. Despegue en frío (cold peel): esperar a que la lámina se enfríe por completo.', 'Opcional: planchado de sellado de 3–5 s con papel manteca (acabado mate) u hoja de teflón (acabado brillante).' ]
+    : kd==='transfer' || kd==='vinil' ? [ 'Al sonar la alarma, abrir la prensa.', 'Retirar la lámina o el papel en caliente o en frío, según la ficha del fabricante.' ]
     : flat ? [ 'Al sonar la alarma, subir la manija.', 'Retirar el teflón y luego el papel en un tirón continuo.' ]
     : [ 'Al sonar la alarma, abrir la resistencia.', 'Retirar la pieza con guantes y quitar el papel.', ...(magic ? ['Dejar enfriar la taza mágica para que recupere el color oscuro.'] : []) ];
   return [
     { k:'mat', label:'Verificar materiales', det:()=>['Marcar cada material en la lista de esta tarjeta.'], saf:()=>[], cond:()=>{ const L = tbMaterials(p), ok = L.filter((_,i)=>TB.inline[i]).length; return [[`Materiales marcados: ${ok} de ${L.length}`, ok===L.length]]; } },
     { k:'safety', label:'Confirmar la seguridad inicial', det:()=>['Pulsar «▶ Ejecutar paso» y marcar cada condición del puesto de trabajo.'], saf:()=>['No encender la prensa sin completar la verificación.'], run:()=>{ openModal('Antes de comenzar','Confirme cada condición del puesto de trabajo.', SAFETY_START, 'Confirmar y continuar', ()=>{ tbDone('safety'); }); return false; } },
-    { k:'on', label:`Encender y fijar ${tU(p.t)} · ${p.s} s`, det:()=>[ 'Conectar a un tomacorriente con conexión a tierra.', 'Poner el interruptor en I.', `Fijar SP = ${tU(p.t)} y ST = ${p.s} s (valores de la tabla del fabricante).`, flat ? 'Mantener la prensa abierta y vacía durante el calentamiento.' : `Conectar la ${res} al controlador.` ], saf:()=>[`La resistencia alcanzará ${tU(p.t)}: no tocarla.`], run:()=>{ $('s1').onclick(); } },
+    { k:'on', label:`Encender y fijar ${tU(p.t)} · ${p.s} s`, det:()=>[ 'Conectar a un tomacorriente con conexión a tierra.', 'Poner el interruptor en I.', `Fijar SP = ${tU(p.t)} y ST = ${p.s} s (${p.src==='dtf' ? 'valores DTF de la guía del curso; presión media a alta' : 'valores de la tabla del fabricante'}).`, flat ? 'Mantener la prensa abierta y vacía durante el calentamiento.' : `Conectar la ${res} al controlador.` ], saf:()=>[`La resistencia alcanzará ${tU(p.t)}: no tocarla.`], run:()=>{ $('s1').onclick(); } },
     { k:'heat', auto:true, label:'Esperar el precalentado', det:()=>[ 'El relé de estado sólido alimenta la resistencia y PV sube hasta SP.', 'Al llegar a SP, el relé alterna para mantener la temperatura.', 'El paso se completa solo al alcanzar SP.' ], saf:()=>['No dejar la prensa encendida sin supervisión.'], cond:()=>[[`PV ${tU(S.pv)} de ${tU(p.t)}`, S.state!=='heating' && S.state!=='off']] },
-    { k:'prep', label:'Preparar la pieza y el papel', det:()=>prep, saf:()=>['Usar solo cinta térmica: la cinta común se funde.'] },
+    { k:'prep', label: kd==='dtf' ? 'Preparar el polo y el transfer DTF' : 'Preparar la pieza y el papel', det:()=>prep, saf:()=>['Usar solo cinta térmica: la cinta común se funde.'] },
     { k:'place', label:'Colocar en la prensa', det:()=>place, saf:()=>['Manos fuera de la zona de cierre.', 'No tocar la resistencia caliente.'], run:()=>{ $('s2').onclick(); } },
     { k:'press', label:'Cerrar y prensar', det:()=> flat ? ['Bajar la manija hasta que trabe.', `El conteo de ${p.s} s empieza al cerrar.`] : ['Cerrar la resistencia sobre la pieza.', `El conteo de ${p.s} s empieza al cerrar.`], saf:()=>['Manos fuera de la zona de cierre.'], run:()=>{ $('s3').onclick(); } },
     { k:'alarm', auto:true, label:'Esperar la alarma de tiempo', det:()=>['El controlador cuenta ST y emite la señal al terminar.', 'No abrir antes de la alarma.'], saf:()=>[], cond:()=>[[S.state==='pressing' ? `Tiempo restante ${Math.max(0,Math.ceil(S.left))} s (simulación ×${S.speed})` : 'Alarma recibida', S.state==='done']] },
-    { k:'open', label:'Abrir y retirar el papel', det:()=>peel, saf:()=>['Usar guantes térmicos: pieza, teflón y papel están calientes.'], run:()=>{ $('s4').onclick(); } },
+    { k:'open', label: kd==='dtf' ? 'Abrir y retirar el film PET' : 'Abrir y retirar el papel', det:()=>peel, saf:()=>['Usar guantes térmicos: pieza, teflón y papel están calientes.'], run:()=>{ $('s4').onclick(); } },
     { k:'rest', label:'Enfriar y revisar', det:()=>['Apoyar la pieza en una superficie plana hasta que se enfríe.', 'Revisar nitidez, color y posición del diseño.'], saf:()=> flat && p.k==='rig' || !flat ? ['Las piezas rígidas retienen el calor varios minutos.'] : [] },
     { k:'off', label:'Apagar y desconectar', det:()=>['Interruptor en O y desconectar tomando el enchufe.', 'Dejar enfriar la prensa a la vista, sin cubrirla.'], saf:()=>['La resistencia sigue caliente después de apagar.'], run:()=>{ openModal('Al terminar','Confirme el cierre seguro del puesto de trabajo.', SAFETY_END, 'Apagar y confirmar', ()=>{ $('s0').onclick(); tbDone('off'); }); return false; } },
   ];
@@ -3486,7 +3600,7 @@ const CT = {};
 function ctDefaultType(t){
   if (/prensa/i.test(t)) return 'instituto';
   if (MAT.list.includes(t) && !/hoja teflonada/i.test(t)) return 'individual';
-  if (/papel de sublimación/i.test(t)) return 'individual';
+  if (/papel de sublimación|transfer dtf/i.test(t)) return 'individual';
   return 'comun';
 }
 const CT_TYPES = { comun:'Común', individual:'Individual', instituto:'Del instituto' };
@@ -3545,7 +3659,7 @@ async function ctBuildPdf(){
   if (logo && logo.src.startsWith('data:image/png')){ const r = logo.naturalHeight/logo.naturalWidth || 0.377; doc.addImage(logo.src,'PNG',M,y,34,34*r); }
   doc.setFont('helvetica','bold'); doc.setFontSize(8.5); doc.setTextColor(...muted);
   doc.text(T('Instituto de Educación Superior "Diseño y Comunicación"'), W-M, y+4, { align:'right' });
-  doc.setFont('helvetica','normal'); doc.text(T('Práctica de estampado por sublimación'), W-M, y+8.5, { align:'right' });
+  doc.setFont('helvetica','normal'); doc.text(T(isDTF() ? 'Práctica de transferencia DTF' : 'Práctica de estampado por sublimación'), W-M, y+8.5, { align:'right' });
   doc.text(T('Prensa térmica 8 en 1 · 38 × 38 cm (P8038-RV8)'), W-M, y+13, { align:'right' });
   y += 22;
   doc.setDrawColor(...heat); doc.setLineWidth(0.8); doc.line(M,y,W-M,y); y += 8;
@@ -3758,6 +3872,17 @@ const SIG = { has:false };
   const up = ()=>{ down = false; }; cv.addEventListener('pointerup',up); cv.addEventListener('pointercancel',up); cv.addEventListener('pointerleave',up);
   $('ctSigClear').addEventListener('click', clear);
 })();
+
+
+/* --- Glosario: búsqueda --- */
+$('glQ')?.addEventListener('input',e=>{
+  const q = e.target.value.trim().toLowerCase().replace(/[‐‑]/g,'-'); let any = false;
+  document.querySelectorAll('.gl-group').forEach(g=>{ let n = 0;
+    g.querySelectorAll('.gl-item').forEach(it=>{ const ok = !q || it.textContent.toLowerCase().replace(/[‐‑]/g,'-').includes(q); it.hidden = !ok; if (ok) n++; });
+    g.hidden = !n; if (n) any = true; });
+  $('glNone').hidden = any;
+});
+document.querySelectorAll('.gl-link').forEach(a=> a.addEventListener('click',e=>{ e.preventDefault(); if (expanded) setExpanded(false); $('glSection').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block:'start' }); }));
 
 </script>
 
